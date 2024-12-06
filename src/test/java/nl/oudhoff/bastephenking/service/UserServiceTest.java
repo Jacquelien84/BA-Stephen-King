@@ -69,7 +69,6 @@ class UserServiceTest {
     void tearDown() {
     }
 
-    //    Test 7
     @Test
     @DisplayName("Should find a user by username")
     void shouldLoadUserByUsername() {
@@ -85,7 +84,6 @@ class UserServiceTest {
         verify(userRepo).findByUsername("Jacquelien");
     }
 
-    //    Test 8
     @Test
     @DisplayName("Should find all users")
     void shouldGetAll() {
@@ -105,7 +103,6 @@ class UserServiceTest {
         assertEquals("karel@fictief.nl", user2.getEmail());
     }
 
-    //    Test 9
     @Test
     @DisplayName("Should delete someone as if they encountered Pennywise")
     void shouldDeletePennywise() {
