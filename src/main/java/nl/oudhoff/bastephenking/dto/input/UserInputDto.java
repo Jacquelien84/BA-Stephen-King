@@ -3,6 +3,7 @@ package nl.oudhoff.bastephenking.dto.input;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
+import nl.oudhoff.bastephenking.model.Role;
 import org.springframework.stereotype.Component;
 
 @Data
