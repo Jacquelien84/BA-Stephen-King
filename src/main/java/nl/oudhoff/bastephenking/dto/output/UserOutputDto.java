@@ -1,4 +1,10 @@
 package nl.oudhoff.bastephenking.dto.output;
 
-public class UserOutputDto {
+import lombok.Data;
+
+@Data
+public class UserOutputDto { String username;
+    private String email;
+    private String password;
+    private Role role;
 }
