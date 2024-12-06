@@ -5,6 +5,7 @@ import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import nl.oudhoff.bastephenking.dto.input.BookInputDto;
 import nl.oudhoff.bastephenking.dto.output.BookOutputDto;
+import nl.oudhoff.bastephenking.exception.ResourceNotFoundException;
 import nl.oudhoff.bastephenking.helper.BindingResultHelper;
 import nl.oudhoff.bastephenking.model.Book;
 import org.springframework.core.io.Resource;

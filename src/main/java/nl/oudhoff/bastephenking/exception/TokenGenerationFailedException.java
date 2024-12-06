@@ -1,7 +1,13 @@
 package nl.oudhoff.bastephenking.exception;
 
+import java.io.Serial;
+
 public class TokenGenerationFailedException extends RuntimeException {
-  public TokenGenerationFailedException(String message) {
-    super(message);
+  @Serial
+  private static final long serialVersionUID = 1L;
+
+  public TokenGenerationFailedException(Throwable cause) {
+    super("Token generation failed. Details: " + cause);
   }
 }
+

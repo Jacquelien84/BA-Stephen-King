@@ -1,7 +1,13 @@
 package nl.oudhoff.bastephenking.exception;
 
+import java.io.Serial;
+
 public class AuthenticationFailedException extends RuntimeException {
-  public AuthenticationFailedException(String message) {
-    super(message);
-  }
+    @Serial
+    private static final long serialVersionUID = 1L;
+
+    public AuthenticationFailedException(Throwable cause) {
+        super("Authentication failed. Check your username, password and authorities and try again. Details: " + cause);
+    }
 }
+
