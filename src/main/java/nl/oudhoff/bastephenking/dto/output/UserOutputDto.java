@@ -1,6 +1,7 @@
 package nl.oudhoff.bastephenking.dto.output;
 
 import lombok.Data;
+import nl.oudhoff.bastephenking.model.Role;
 
 @Data
 public class UserOutputDto { String username;
