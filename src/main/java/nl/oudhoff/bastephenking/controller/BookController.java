@@ -9,6 +9,7 @@ import nl.oudhoff.bastephenking.exception.ResourceNotFoundException;
 import nl.oudhoff.bastephenking.helper.BindingResultHelper;
 import nl.oudhoff.bastephenking.model.Book;
 import nl.oudhoff.bastephenking.service.BookService;
+import nl.oudhoff.bastephenking.service.BookcoverService;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
