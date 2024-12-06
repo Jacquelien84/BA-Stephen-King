@@ -3,6 +3,8 @@ package nl.oudhoff.bastephenking.controller;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import nl.oudhoff.bastephenking.dto.input.UserInputDto;
+import nl.oudhoff.bastephenking.dto.output.AuthOutputDto;
+import nl.oudhoff.bastephenking.dto.output.AuthenticationResponse;
 import nl.oudhoff.bastephenking.exception.AuthenticationFailedException;
 import nl.oudhoff.bastephenking.model.User;
 import nl.oudhoff.bastephenking.security.JwtUtil;
@@ -76,4 +78,4 @@ public ResponseEntity<Object> refreshToken(HttpServletRequest request, HttpServl
         throw new AuthenticationFailedException(e.getCause());
     }
 }
-}
+
