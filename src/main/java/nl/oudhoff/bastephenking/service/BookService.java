@@ -7,6 +7,9 @@ import nl.oudhoff.bastephenking.dto.mapper.BookMapper;
 import nl.oudhoff.bastephenking.dto.output.BookOutputDto;
 import nl.oudhoff.bastephenking.exception.ResourceNotFoundException;
 import nl.oudhoff.bastephenking.model.Book;
+import nl.oudhoff.bastephenking.model.Bookcover;
+import nl.oudhoff.bastephenking.repository.BookRepository;
+import nl.oudhoff.bastephenking.repository.FileUploadRepository;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 
