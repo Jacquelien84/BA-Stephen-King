@@ -1,6 +1,5 @@
 package nl.oudhoff.bastephenking.controller;
 
-import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -15,6 +14,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.matchesPattern;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -30,7 +30,6 @@ class BookControllerIntegrationTest {
     MockMvc mockMvc;
 
     @Test
-    @Order(1)
     void shouldCreateBook() throws Exception {
 
         String requestJson = """
@@ -57,19 +56,19 @@ class BookControllerIntegrationTest {
     }
 
     @Test
-    @Order(2)
-    void shouldGetBookById() throws Exception {
+    void shouldGetBookByTitle() throws Exception {
         // Maak het boek via MockMvc POST-aanroep
         String bookJson = """
-                {
-                "title": "Cujo",
-                "author": "Stephen King",
-                "originalTitle": "Cujo",
-                "released": 1981,
-                "movieAdaptation": "Cujo - 1983",
-                "description": "Stel je een reusachtige Sint Bernard voor. Een grote lobbes en de beste vriend van de tienjarige Brett Camber. Helaas komt hier verandering in wanneer Cujo in aanraking komt met een ernstig zieke vleermuis. Door de hondsdolheid die hij hierdoor oploopt is niets of niemand meer veilig."
-                }
-                """;
+            {
+            "id": 1,
+            "title": "Carrie",
+            "author": "Stephen King",
+            "originalTitle": "Carrie",
+            "released": 1974,
+            "movieAdaptation": "Carrie - 1976",
+            "description": "Carrie White is een buitenbeentje op haar middelbare school. Ze wordt gepest door haar klasgenoten en thuis mishandeld door haar religieuze moeder. Wanneer ze ontdekt dat ze telekinetische krachten heeft, neemt ze wraak op iedereen die haar ooit kwaad heeft gedaan."
+            }
+            """;
 
         MvcResult result = mockMvc.perform(post("/books")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -77,20 +76,20 @@ class BookControllerIntegrationTest {
                 .andExpect(status().isCreated())
                 .andReturn();
 
-        // Haal het ID van het aangemaakte boek uit de respons
+        // Valideer dat het boek correct is aangemaakt
         String location = result.getResponse().getHeader("Location");
-        Long createdId = Long.valueOf(location.split("/books/")[8]);
+        assertNotNull(location);
 
-        // Haal het boek op via de API en valideer de velden
-        mockMvc.perform(get("/books/{id}", createdId)
+        // Haal het boek op via de titel en valideer de velden
+        mockMvc.perform(get("/books/title/{title}", "Carrie")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.title").value("Cujo"))
+                .andExpect(jsonPath("$.id").value(1))
+                .andExpect(jsonPath("$.title").value("Carrie"))
                 .andExpect(jsonPath("$.author").value("Stephen King"))
-                .andExpect(jsonPath("$.originalTitle").value("Cujo"))
-                .andExpect(jsonPath("$.released").value(1981))
-                .andExpect(jsonPath("$.movieAdaptation").value("Cujo - 1983"))
-                .andExpect(jsonPath("$.description").value("Stel je een reusachtige Sint Bernard voor. Een grote lobbes en de beste vriend van de tienjarige Brett Camber. Helaas komt hier verandering in wanneer Cujo in aanraking komt met een ernstig zieke vleermuis. Door de hondsdolheid die hij hierdoor oploopt is niets of niemand meer veilig."));
+                .andExpect(jsonPath("$.originalTitle").value("Carrie"))
+                .andExpect(jsonPath("$.released").value(1974))
+                .andExpect(jsonPath("$.movieAdaptation").value("Carrie - 1976"))
+                .andExpect(jsonPath("$.description").value("Carrie White is een buitenbeentje op haar middelbare school. Ze wordt gepest door haar klasgenoten en thuis mishandeld door haar religieuze moeder. Wanneer ze ontdekt dat ze telekinetische krachten heeft, neemt ze wraak op iedereen die haar ooit kwaad heeft gedaan."));
     }
 }
-
