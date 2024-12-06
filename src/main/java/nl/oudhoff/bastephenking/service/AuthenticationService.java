@@ -93,7 +93,7 @@ public class AuthenticationService {
     }
 
     private void revokeAllTokenByUser(User user) {
-        List<ch.qos.logback.core.subst.Token> validTokens = tokenRepo.findAllAccessTokensByUser(user.getUsername());
+        List<Token> validTokens = tokenRepo.findAllAccessTokensByUser(user.getUsername());
         if(validTokens.isEmpty()) {
             return;
         }
