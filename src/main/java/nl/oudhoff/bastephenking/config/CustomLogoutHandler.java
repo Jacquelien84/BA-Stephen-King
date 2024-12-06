@@ -1,9 +1,9 @@
 package nl.oudhoff.bastephenking.config;
 
-import ch.qos.logback.core.subst.Token;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import nl.oudhoff.bastephenking.repository.TokenRepository;
+import nl.oudhoff.bastephenking.model.Token;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.logout.LogoutHandler;
