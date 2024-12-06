@@ -3,6 +3,7 @@ package nl.oudhoff.bastephenking.controller;
 
 import nl.oudhoff.bastephenking.dto.output.UserOutputDto;
 import nl.oudhoff.bastephenking.exception.ResourceNotFoundException;
+import nl.oudhoff.bastephenking.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
